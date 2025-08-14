@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kids Alphabet • Nepali & English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="app-title">Kids Alphabet • Nepali & English</h1>
+      <div class="header-actions">
+        <button id="btnHome" class="btn btn-secondary" data-target="home">🏠 Home</button>
+        <button id="btnNepaliSwar" class="btn" data-target="nepali-swar">नेपाली स्वर</button>
+        <button id="btnNepaliByanjan" class="btn" data-target="nepali-byanjan">नेपाली व्यञ्जन</button>
+        <button id="btnEnglishAZ" class="btn" data-target="english-az">English A–Z</button>
+        <button id="btnBarakhari" class="btn" data-target="barakhari">Barakhari (बारखरी)</button>
+        <button id="btnNumbers" class="btn" data-target="numbers">Numbers (संख्या)</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- Home Section -->
+      <section id="section-home" class="section active">
+        <div class="home-grid">
+          <button class="big-card" data-target="nepali-swar">
+            <div class="big-card-emoji">🪔</div>
+            <div class="big-card-title">Nepali Swar (स्वर)</div>
+            <div class="big-card-sub">अ, आ, इ, ई, ...</div>
+          </button>
+          <button class="big-card" data-target="nepali-byanjan">
+            <div class="big-card-emoji">📚</div>
+            <div class="big-card-title">Nepali Byanjan (व्यञ्जन)</div>
+            <div class="big-card-sub">क, ख, ग, घ, ...</div>
+          </button>
+          <button class="big-card" data-target="english-az">
+            <div class="big-card-emoji">🔤</div>
+            <div class="big-card-title">English A–Z</div>
+            <div class="big-card-sub">A, B, C, D, ...</div>
+          </button>
+          <button class="big-card" data-target="barakhari">
+            <div class="big-card-emoji">🧩</div>
+            <div class="big-card-title">Barakhari (बारखरी)</div>
+            <div class="big-card-sub">क, का, कि, की, ...</div>
+          </button>
+          <button class="big-card" id="cardNepaliNumbers" data-target="numbers" data-lang="nepali">
+            <div class="big-card-emoji">🔢</div>
+            <div class="big-card-title">Nepali Numbers (१–१००)</div>
+            <div class="big-card-sub">एक, दुई, तीन, ...</div>
+          </button>
+          <button class="big-card" id="cardEnglishNumbers" data-target="numbers" data-lang="english">
+            <div class="big-card-emoji">🔢</div>
+            <div class="big-card-title">English Numbers (1–100)</div>
+            <div class="big-card-sub">one, two, three, ...</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Nepali Swar Section -->
+      <section id="section-nepali-swar" class="section">
+        <h2 class="section-title">नेपाली स्वर</h2>
+        <div class="lesson-controls">
+          <button id="swarStart" class="btn btn-secondary">▶ Start</button>
+          <button id="swarPrev" class="btn" title="Left Arrow">⬅ Prev</button>
+          <button id="swarNext" class="btn" title="Right Arrow">Next ➡</button>
+          <button id="swarSpeak" class="btn primary" title="Space">🔊 Speak (Space)</button>
+          <div class="lesson-hint">Use Left/Right arrows to move, Space to pronounce</div>
+        </div>
+        <div id="grid-nepali-swar" class="alphabet-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- Nepali Byanjan Section -->
+      <section id="section-nepali-byanjan" class="section">
+        <h2 class="section-title">नेपाली व्यञ्जन</h2>
+        <div class="lesson-controls">
+          <button id="byanjanStart" class="btn btn-secondary">▶ Start</button>
+          <div class="lesson-hint">Open full-screen lesson</div>
+        </div>
+        <div id="grid-nepali-byanjan" class="alphabet-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- English A–Z Section -->
+      <section id="section-english-az" class="section">
+        <h2 class="section-title">English A–Z</h2>
+        <div class="lesson-controls">
+          <button id="englishStart" class="btn btn-secondary">▶ Start</button>
+          <div class="lesson-hint">Open full-screen lesson</div>
+        </div>
+        <div id="grid-english-az" class="alphabet-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- Barakhari Section -->
+      <section id="section-barakhari" class="section">
+        <h2 class="section-title hide-when-modal">Barakhari (बारखरी)</h2>
+        <div class="lesson-controls hide-when-modal">
+          <button id="barakhariStart" class="btn btn-secondary">▶ Start</button>
+          <div class="lesson-hint">Open full-screen lesson</div>
+        </div>
+        <div id="grid-barakhari" class="barakhari-wrap hide-when-modal" aria-live="polite"></div>
+      </section>
+
+      <!-- Numbers Section -->
+      <section id="section-numbers" class="section">
+        <h2 class="section-title">Numbers (संख्या)</h2>
+        <div class="lesson-controls">
+          <button id="numbersStart" class="btn btn-secondary">▶ Start</button>
+        </div>
+        <div id="grid-nepali-numbers" class="alphabet-grid"></div>
+        <div id="grid-english-numbers" class="alphabet-grid" style="display:none;"></div>
+      </section>
+    </main>
+
+    <!-- Letter Details Modal -->
+    <div id="letterModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="letterTitle">
+      <div class="modal-content">
+        <button class="modal-close" data-close>&times;</button>
+        <div class="letter-card">
+          <div class="letter-display" id="letterDisplay">क</div>
+          <div class="letter-meta">
+            <div class="meta-row"><span class="meta-label">Pronunciation:</span> <span id="letterPronunciation">ka</span></div>
+            <div class="meta-row"><span class="meta-label">Transliteration:</span> <span id="letterLatin">ka</span></div>
+            <div class="meta-row"><span class="meta-label">Example:</span> <span id="letterExample">कुकुर (Dog)</span></div>
+          </div>
+          <div id="barakhariVariations" class="variations-row" hidden></div>
+          <div class="learn-panel">
+            <object id="writingPreview" type="image/svg+xml" data="./assets/svg/write-placeholder.svg" aria-label="Writing preview"></object>
+            <div class="example-visual">
+              <img id="letterImage" src="./assets/images/placeholder.svg" alt="Example image" />
+            </div>
+          </div>
+          <div class="letter-phrase" id="letterPhrase" hidden>
+            <span id="phraseLetter" class="phrase-letter">क</span>
+            <span class="phrase-join">बाट</span>
+            <span id="phraseWord" class="phrase-word">कमल</span>
+          </div>
+          <div class="letter-actions">
+            <button id="btnPlayAudio" class="btn primary">🔊 Play Sound</button>
+            <button id="btnHowToWrite" class="btn">✏ How to Write</button>
+            <button id="btnSpeakPhrase" class="btn">🗣 Speak Phrase</button>
+            <button id="btnSpellWord" class="btn">🔡 Spell Letters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Writing Modal -->
+    <div id="writingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="writingTitle">
+      <div class="modal-content writing">
+        <button class="modal-close" data-close>&times;</button>
+        <h3 id="writingTitle" class="writing-title">How to write</h3>
+        <div class="writing-canvas">
+          <object id="writingObject" type="image/svg+xml" data="./assets/svg/write-placeholder.svg" aria-label="Writing animation"></object>
+        </div>
+        <div class="writing-tip">Tip: Trace with your finger on touch screens!</div>
+      </div>
+    </div>
+
+    <!-- Full-screen Lesson Modal (Nepali Swar) -->
+    <div id="lessonModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="lessonTitle">
+      <div class="modal-content lesson">
+        <div class="lesson-topbar">
+          <button id="lessonClose" class="modal-close" title="Close">&times;</button>
+          <div id="lessonTitle" class="lesson-title">नेपाली स्वर</div>
+          <div class="lesson-spacer"></div>
+        </div>
+        <div class="lesson-body">
+          <button id="lessonPrev" class="btn lesson-nav" title="Prev">⬅</button>
+          <div class="lesson-center">
+            <div id="lessonIndex" class="lesson-index">१</div>
+            <div id="lessonLetter" class="lesson-letter">अ</div>
+            <div id="lessonName" class="lesson-name">a</div>
+          </div>
+          <button id="lessonNext" class="btn lesson-nav" title="Next">➡</button>
+        </div>
+        <div class="lesson-actions">
+          <button id="lessonSpeak" class="btn primary">🔊 Speak (Space)</button>
+        </div>
+        <div class="lesson-footer">Use Left/Right arrows to move • Space to speak • Esc to close</div>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <div>Made for kids • Works offline once loaded</div>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+  </html>
+
+
